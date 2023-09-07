@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fa-ir">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="assest/Vazirmatn-font-face.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        direction: rtl;
+        font-family: Vazirmatn;
+      }
+      #main {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 20px;
+      }
+      .box-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-content: center;
+        padding: 20px 30px;
+      }
+      .box-input {
+        width: 25%;
+        margin-bottom: 20px;
+        text-align: right;
+      }
+      .box-input label {
+        font-size: 1.2vw;
+      }
+      .box-input input {
+        width: 80%;
+        padding: 10px 20px;
+        font-size: 1.2vw;
+        font-weight: 500;
+        color: gray;
+        outline: none;
+        border: none;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        margin-bottom: 10px;
+      }
+      .box-input input:focus {
+        outline: 1px solid gray;
+      }
+      .btn {
+        text-align: center;
+      }
+      .btn button {
+        display: inline-block;
+        padding: 10px 60px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        font-size: 1.2vw;
+        outline: none;
+        border: none;
+        box-shadow: 0 9px #999;
+        border: 1px solid rgba(128, 128, 128, 0.534);
+      }
+      .btn button:hover {
+        background-color: rgba(128, 128, 128, 0.384);
+      }
+      .btn button:active {
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+      .box-search {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        width: 100%;
+        padding: 30px 40px;
+      }
+      .box-search label {
+        font-size: 1.2vw;
+        margin-left: 20px;
+      }
+      .search {
+        width: 20%;
+        position: relative;
+      }
+      .search input {
+        width: 100%;
+        padding: 7px 20px;
+        font-size: 1.2vw;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      .search input:focus {
+        outline: 1px solid rgba(255, 68, 0, 0.603);
+      }
+      .search span {
+        display: inline-block;
+        position: absolute;
+        background-color: rgba(255, 68, 0, 0.74);
+        color: white;
+        top: 0;
+        left: 0;
+        width: 2vw;
+        height: 100%;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        text-align: center;
+        padding: 7px;
+        font-size: 1vw;
+      }
+      #resulSearch {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-content: start;
+        padding: 20px 10px;
+      }
+      .box-result {
+        max-width: 300px;
+        min-width: 300px;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        text-align: center;
+        margin-top: 20px;
+        margin-right: 20px;
+        margin-bottom: 30px;
+      }
+      .box-image {
+        width: 90%;
+        margin: 0 auto;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+      .image {
+        background-image: url(assest/image/1.jpg);
+        aspect-ratio: 1/1;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .titel {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .description p:not(.price) {
+        color: gray;
+        margin: 20px 0;
+        font-weight: 400;
+        text-align: right;
+        font-size: 15px;
+      }
+      .description b {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box-search">
+      <label for="search">جستجو :</label>
+      <div class="search">
+        <input
+          type="text"
+          name="search"
+          id="search"
+          onkeypress="searchByEnter(event)"
+        />
+        <span onclick="search()"
+          ><i class="fa fa-search" aria-hidden="true"></i
+        ></span>
+      </div>
+    </div>
+    <section id="main">
+      <div class="box-container">
+        <div class="box-input">
+          <label for="photo-car">عکس خودرو :</label>
+          <br />
+          <input
+            type="text"
+            name="photo-car"
+            id="Photo"
+            value="https://cdn.bama.ir/uploads/BamaImages/VehicleCarImages/d51dddab-6ad0-4773-9e3e-536f563b739a/CarImage10477753_638186996869862329_thumb_900_600.jpg?width=312"
+          />
+        </div>
+        <div class="box-input">
+          <label for="car-brand">برند :</label>
+          <br />
+          <input type="text" name="car-brand" id="Brand" />
+        </div>
+        <div class="box-input">
+          <label for="production-Year">سال تولید :</label>
+          <br />
+          <input type="date" name="production-Year" id="Model" />
+        </div>
+        <div class="box-input">
+          <label for="color-car">رنگ :</label>
+          <br />
+          <input type="text" name="color-car" id="Color" />
+        </div>
+        <div class="box-input">
+          <label for="car-usage">کارکرد :</label>
+          <br />
+          <input type="number" name="car-usage" id="Usage" />
+        </div>
+        <div class="box-input">
+          <label for="car-chassis">وضعیت شاسی :</label>
+          <br />
+          <input type="text" name="car-chassis" id="Chassis" />
+        </div>
+        <div class="box-input">
+          <label for="car-body">وضعیت بدنه:</label>
+          <br />
+          <input type="text" name="car-body" id="Body" />
+        </div>
+        <div class="box-input">
+          <label for="base-price">قیمت پایه : </label>
+          <br />
+          <input type="number" name="base-price" id="Price" />
+        </div>
+      </div>
+      <div class="btn">
+        <button type="button" onclick="addCar()">ثبت</button>
+      </div>
+    </section>
+    <div id="resulSearch"></div>
+
+    <script>
+      var carsArray = [];
+      var index = 0;
+      class Car {
+        constructor(photo, brand, model, color, usage, chassis, body, price) {
+          this.photo = photo;
+          this.brand = brand;
+          this.model = model;
+          this.color = color;
+          this.usage = usage;
+          this.chassis = chassis;
+          this.body = body;
+          this.price = price;
+        }
+      }
+      function addCar() {
+        let photo = document.getElementById("Photo").value;
+        let brand = document.getElementById("Brand").value;
+        let model = document.getElementById("Model").value;
+        let color = document.getElementById("Color").value;
+        let usage = document.getElementById("Usage").value;
+        let chassis = document.getElementById("Chassis").value;
+        let body = document.getElementById("Body").value;
+        let price = document.getElementById("Price").value;
+        document.getElementById("Brand").value = "";
+        document.getElementById("Model").value = "";
+        document.getElementById("Color").value = "";
+        document.getElementById("Usage").value = "";
+        document.getElementById("Chassis").value = "";
+        document.getElementById("Body").value = "";
+        document.getElementById("Price").value = "";
+        let car = new Car(
+          photo,
+          brand,
+          model,
+          color,
+          usage,
+          chassis,
+          body,
+          price
+        );
+        carsArray[index] = car;
+        index++;
+      }
+
+      function search() {
+        let searchValue = document.getElementById("search").value;
+        document.getElementById("search").value = "";
+        let found = false;
+        document.getElementById("resulSearch").innerHTML = "";
+        for (let i = 0; i < carsArray.length; i++) {
+          if (carsArray[i].brand == searchValue) {
+            document.getElementById("resulSearch").innerHTML += `
+            <div class="box-result">
+        <div class="box-image">
+          <div class="image" style="background-image: url(${carsArray[i].photo})"></div>
+        </div>
+        <div class="titel"><strong>${carsArray[i].brand}</strong></div>
+        <div class="description">
+          <p>🔹<b>سال تولید :</b> ${carsArray[i].model}</p>
+          <p>🔹<b>رنگ : </b> ${carsArray[i].color}</p>
+          <p>🔹<b>کارکرد : </b> ${carsArray[i].usage}</p>
+          <p>🔹<b>شاسی : </b>${carsArray[i].chassis}</p>
+          <p>🔹<b>بدنه : </b> ${carsArray[i].body}</p>
+          <p class="price">${carsArray[i].price} ریال</p>
+        </div>
+      </div>`;
+            found = true;
+          }
+        }
+
+        if (found == false) {
+          document.getElementById("search").value = "موردی یافت نشد";
+        }
+      }
+      function searchByEnter(event) {
+        if (event.keyCode == 13) {
+          search();
+        }
+      }
+    </script>
+  </body>
+</html>

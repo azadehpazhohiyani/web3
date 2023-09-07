@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="car"></p>
+    <p id="demo"></p>
+    <script>
+            var Cars = ["Bmw", "Volvo", "Mercedes-Benz", "Saab", "Chevrolet", "Kia"];
+            var Country = [
+              "Germany",
+              "Sweden",
+              "Usa",
+              "Italy",
+              "France",
+              "South Korea",
+            ];
+            var Car1 = Cars.at(4);
+            console.log(Car1);
+
+            var MadeIn = Cars.concat(Country);
+            console.log(MadeIn);
+
+            var text = Cars.constructor;
+            console.log(text);
+
+            var Car2 = Cars.copyWithin(2,0,2);
+          document.getElementById("car").innerHTML=Car2
+
+          var Car3 = Cars.entries();
+          for (let x of Car3) {
+              document.getElementById("demo").innerHTML += x + "<br>";
+      }
+
+     var Car4 = Cars.fill("Bmw");
+     console.log(Car4);
+    </script>
+  </body>
+</html>

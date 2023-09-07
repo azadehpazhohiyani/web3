@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fa-ir">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="assest/Vazirmatn-font-face.css" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        direction: rtl;
+        font-family: Vazirmatn;
+        background-color: rgba(220, 220, 220, 0.253);
+      }
+      #container {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 20px;
+      }
+      .box-input {
+        width: 20%;
+        padding: 20px 25px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      #box-product {
+        width: 75%;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .box-input label {
+        font-size: 1.1vw;
+        color: gray;
+      }
+      .box-input input {
+        width: 100%;
+        padding: 8px 20px;
+        font-size: 1.1vw;
+        border-radius: 10px;
+        border: 1px solid gray;
+        font-weight: 400;
+      }
+      #insert {
+        padding: 10px 30px;
+        margin-top: 20px;
+        font-size: 20px;
+        border-radius: 10px;
+        outline: none;
+        border: 1px solid gray;
+        text-align: center;
+      }
+      #box-product {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-content: start;
+      }
+      .product {
+        max-width: 300px;
+        min-width: 300px;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        text-align: center;
+        margin-top: 20px;
+        margin-right: 20px;
+        margin-bottom: 30px;
+      }
+      .box-image {
+        width: 90%;
+      }
+      .image {
+        background-image: url(assest/image/1.jpg);
+        aspect-ratio: 1/1;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .titel {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .description p:not(.price) {
+        color: gray;
+        margin: 20px 0;
+        font-weight: 400;
+        text-align: right;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="box-input">
+        <label for="pic">عکس محصول :</label>
+        <input type="text" name="pic" id="pic" />
+        <br /><br /><br />
+        <label for="productName">نام محصول :</label>
+        <br /><br />
+        <input type="text" name="productName" id="productName" />
+        <br /><br /><br />
+        <label>مشخصات محصول :</label>
+        <br /><br />
+        <input type="text" name="specifications1" id="specifications1" />
+        <br /><br />
+        <input type="text" name="specifications2" id="specifications2" />
+        <br /><br />
+        <input type="text" name="specifications3" id="specifications3" />
+        <br /><br />
+        <input type="text" name="specifications4" id="specifications4" />
+        <br /><br />
+        <label for="price">قیمت :</label>
+        <br /><br />
+        <input type="number" name="price" id="price" />
+        <br /><br />
+        <button id="insert" onclick="insertProduct()">ثبت</button>
+      </div>
+      <div id="box-product"></div>
+    </div>
+
+    <script>
+      function insertProduct() {
+        var photo = document.getElementById("pic").value;
+        var productName = document.getElementById("productName").value;
+        var spec1 = document.getElementById("specifications1").value;
+        var spec2 = document.getElementById("specifications2").value;
+        var spec3 = document.getElementById("specifications3").value;
+        var spec4 = document.getElementById("specifications4").value;
+        var price = document.getElementById("price").value;
+        document.getElementById("pic").value = "";
+        document.getElementById("productName").value = "";
+        document.getElementById("specifications1").value = "";
+        document.getElementById("specifications2").value = "";
+        document.getElementById("specifications3").value = "";
+        document.getElementById("specifications4").value = "";
+        document.getElementById("price").value = "";
+        document.getElementById("box-product").innerHTML += `
+        <div class="product">
+          <div class="box-image">
+            <div class="image" style="background-image: url(${photo})"></div>
+          </div>
+          <div class="titel"><strong>${productName}</strong></div>
+          <div class="description">
+            <p>🔸 ${spec1}</p>
+            <p>🔸 ${spec2}</p>
+            <p>🔸 ${spec3}</p>
+            <p>🔸 ${spec4}</p>
+            <p class="price">${price} ریال</p>
+          </div>`;
+      }
+    </script>
+  </body>
+</html>

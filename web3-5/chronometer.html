@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      #chronometer {
+        width: 46%;
+        position: relative;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      #chronometer img {
+        width: 100%;
+      }
+      #chronometer .hand-clock {
+        width: 50%;
+        position: absolute;
+        top: 40%;
+        left: 24%;
+      }
+      #chronometer .start-noclick {
+        background-color: tomato;
+        width: 7%;
+        height: 2.5%;
+        border: none;
+        outline: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        transform: rotateZ(38deg);
+        position: absolute;
+        top: 22.3%;
+        left: 80.8%;
+      }
+      #chronometer .start-onclick {
+        background-color: tomato;
+        width: 7%;
+        height: 1.5%;
+        border: none;
+        outline: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        transform: rotateZ(38deg);
+        position: absolute;
+        top: 23%;
+        left: 80.6%;
+        display: none;
+      }
+      #chronometer .end-noclick {
+        background-color: cornflowerblue;
+        width: 7%;
+        height: 2.5%;
+        border: none;
+        outline: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        transform: rotateZ(-38deg);
+        position: absolute;
+        top: 23.1%;
+        left: 11.3%;
+        display: block;
+      }
+      #chronometer .end-onclick {
+        background-color: cornflowerblue;
+        width: 7%;
+        height: 1.5%;
+        border: none;
+        outline: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        transform: rotateZ(-38deg);
+        position: absolute;
+        top: 24%;
+        left: 11.5%;
+        display: none;
+      }
+      .box-show-time {
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25%;
+        height: 150px;
+        font-size: 50px;
+        background-color: rgba(220, 20, 60, 0.904);
+        border-radius: 10px;
+        border: 2px solid yellow;
+        color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chronometer">
+      <img src="assest/image/chornometer.png" alt="clock" />
+      <div class="hand-clock">
+        <img src="assest/image/8iEboEy8T.png" alt="hand-clock" />
+      </div>
+      <button class="start-noclick" onclick="startClick()"></button>
+      <button class="start-onclick"></button>
+      <button class="end-noclick" onclick="endClick()"></button>
+      <button class="end-onclick"></button>
+    </div>
+    <div class="box-show-time"><p id="showTime"></p></div>
+
+    <script>
+      const startNoClick = document.getElementsByClassName("start-noclick")[0];
+      const startOnClick = document.getElementsByClassName("start-onclick")[0];
+      const endNoClick = document.getElementsByClassName("end-noclick")[0];
+      const endOnClick = document.getElementsByClassName("end-onclick")[0];
+      startNoClick.style.display = "block";
+      endNoClick.style.display = "block";
+      function startClick() {
+        if (startNoClick.style.display == "block") {
+          startNoClick.style.display = "none";
+          startOnClick.style.display = "block";
+          endNoClick.style.display = "block";
+          endOnClick.style.display = "none";
+          interVal = setInterval(addCounter, 1000);
+        }
+      }
+      function endClick() {
+        if (endNoClick.style.display == "block") {
+          endNoClick.style.display = "none";
+          endOnClick.style.display = "block";
+          startNoClick.style.display = "block";
+          startOnClick.style.display = "none";
+          clearInterval(interVal);
+        }
+      }
+      let interVal;
+      let count = 0;
+      const addCounter = function () {
+        count++;
+        document.getElementsByClassName("hand-clock")[0].style.transform =
+          "rotate(" + count + "deg)";
+        document.getElementById("showTime").innerHTML = count;
+      };
+    </script>
+  </body>
+</html>

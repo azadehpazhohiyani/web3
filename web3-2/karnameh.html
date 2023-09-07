@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fa-ir">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>کارنامه</title>
+    <link rel="stylesheet" href="assest/Vazirmatn-font-face.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        direction: rtl;
+        font-family: Vazirmatn;
+        background-color: rgba(220, 220, 220, 0.315);
+      }
+      #header {
+        width: 80%;
+        margin: 50px auto 20px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #header .image {
+        width: 200px;
+        height: 200px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      #header .image img {
+        display: block;
+        width: 100%;
+      }
+      #header .spec {
+        width: 70%;
+        padding: 40px 50px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        height: 200px;
+        border-radius: 10px;
+        background-color: white;
+      }
+      #header .spec label {
+        font-size: 25px;
+        margin-bottom: 20px;
+      }
+      #header .spec input {
+        width: 35%;
+        padding: 8px 20px;
+        margin-right: 50px;
+        font-size: 30px;
+        font-weight: 400;
+        border-radius: 10px;
+        outline: none;
+        border: 1px solid rgba(128, 128, 128, 0.596);
+        color: gray;
+        display: inline-block;
+      }
+      #box-score {
+        width: 80%;
+        margin: 50px auto 50px auto;
+      }
+      #box-score .scors {
+        width: 100%;
+        padding: 30px 50px;
+      }
+      #box-score .scors label {
+        font-size: 30px;
+      }
+      #box-score .scors input {
+        width: 8%;
+        padding: 15px 10px;
+        margin-right: 50px;
+        font-size: 25px;
+        border-radius: 10px;
+        outline: none;
+        border: 1px solid rgba(128, 128, 128, 0.596);
+        color: gray;
+        display: inline-block;
+      }
+      #box-score .scors input.result {
+        width: 20%;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 400;
+      }
+      #box-score #moadel {
+        width: 20%;
+      }
+      .scors #btn {
+        width: 10%;
+        background-color: cornflowerblue;
+        font-size: 30px;
+        padding: 15px 20px;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        border: none;
+        outline: none;
+      }
+      .scors #btn:hover {
+        background-color: rgba(71, 61, 139, 0.527);
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>سیستم شما از جاوا اسکریپت پشتیبانی نمی کند !</noscript>
+
+    <div id="header">
+      <div class="spec">
+        <label for="fname">نام :</label>
+        <input type="text" name="fname" id="fname" />
+        <br /><br />
+        <label for="lname">نام خانوادگی :</label>
+        <input type="text" name="lname" id="lname" />
+      </div>
+      <div class="image">
+        <img src="assest/image/avatar.png" alt="" />
+      </div>
+    </div>
+    <section id="box-score">
+      <div class="scors">
+        <label for="riyazi">ریاضی</label>
+        <input type="number" name="riyazi" id="riyazi" />
+        <input type="text" name="" id="resultRiyazi" class="result" />
+        <br /><br /><br />
+        <label for="fizic">فیزیک</label>
+        <input type="number" name="fizic" id="fizic" />
+        <input type="text" name="" id="resultFizic" class="result" />
+        <br /><br /><br />
+        <label for="shimi">شیمی</label>
+        <input type="number" name="shimi" id="shimi" />
+        <input type="text" name="" id="resultShimi" class="result" />
+        <br /><br /><br />
+        <label for="english">زبان انگلیسی</label>
+        <input type="number" name="english" id="english" />
+        <input type="text" name="" id="resultEnglish" class="result" />
+        <br /><br /><br />
+        <label for="arabi">عربی</label>
+        <input type="number" name="arabi" id="arabi" />
+        <input type="text" name="" id="resultArabi" class="result" />
+        <br /><br /><br />
+        <label for="farsi">ادبیات فارسی</label>
+        <input type="number" name="farsi" id="farsi" />
+        <input type="text" name="" id="resultFarsi" class="result" />
+        <br /><br /><br />
+        <label for="varzesh">تربیت بدنی</label>
+        <input type="number" name="varzesh" id="varzesh" />
+        <input type="text" name="" id="resultVarzesh" class="result" />
+        <br /><br /><br />
+        <label for="dini">دین و زندگی</label>
+        <input type="number" name="dini" id="dini" />
+        <input type="text" name="" id="resultDini" class="result" />
+        <br /><br /><br />
+        <button type="button" id="btn" onclick="moadel()">معدل</button>
+        <br /><br /><br />
+        <input type="number" id="moadel" />
+        <input type="text" name="" id="resultMoadel" class="result" />
+      </div>
+    </section>
+
+    <script>
+      function moadel() {
+        var riyazi = document.getElementById("riyazi").value;
+        if(riyazi==''){
+          document.getElementById("resultRiyazi").value = "نمره وارد نشده";
+        }else {
+          riyazi=Number(riyazi);
+          if (riyazi >= 10) {
+              document.getElementById("resultRiyazi").value = "قبول 👏";
+          } else if (riyazi < 10) {
+              document.getElementById("resultRiyazi").value = "مردود 😥";
+          }
+        }
+        var fizic = document.getElementById("fizic").value;
+        if (fizic == "") {
+          document.getElementById("resultFizic").value = "نمره وارد نشده";
+        } else{
+          fizic=Number(fizic);
+          if (fizic >= 10) {
+          document.getElementById("resultFizic").value = "قبول 👏";
+        } else if (fizic < 10) {
+          document.getElementById("resultFizic").value = "مردود 😥";
+        }
+        } 
+        var shimi = document.getElementById("shimi").value;
+        if (shimi == "") {
+          document.getElementById("resultShimi").value = "نمره وارد نشده";
+        } else {
+          shimi=Number(shimi);
+          if (shimi >= 10) {
+          document.getElementById("resultShimi").value = "قبول 👏";
+        } else if (shimi < 10) {
+          document.getElementById("resultShimi").value = "مردود 😥";
+        }
+        }  
+        var english = document.getElementById("english").value;
+        if (english == "") {
+          document.getElementById("resultEnglish").value = "نمره وارد نشده";
+        } else {
+          english=Number(english);
+          if (english >= 10) {
+          document.getElementById("resultEnglish").value = "قبول 👏";
+        } else if (english < 10) {
+          document.getElementById("resultEnglish").value = "مردود 😥";
+        }} 
+        var arabi = document.getElementById("arabi").value;
+        if (arabi == "") {
+          document.getElementById("resultArabi").value = "نمره وارد نشده";
+        } else {
+          arabih=Number(arabi);
+          if (arabi >= 10) {
+          document.getElementById("resultArabi").value = "قبول 👏";
+        } else if (arabi < 10) {
+          document.getElementById("resultArabi").value = "مردود 😥";
+        }
+        } 
+        var farsi = document.getElementById("farsi").value;
+        if (farsi == "") {
+          document.getElementById("resultFarsi").value = "نمره وارد نشده";
+        } else {
+          farsi=Number(farsi);
+          if (farsi >= 10) {
+          document.getElementById("resultFarsi").value = "قبول 👏";
+        } else if (farsi < 10) {
+          document.getElementById("resultFarsi").value = "مردود 😥";
+        }
+        } 
+        var varzesh = document.getElementById("varzesh").value;
+        if (varzesh == "") {
+          document.getElementById("resultVarzesh").value = "نمره وارد نشده";
+        } else {
+          varzesh=Number(varzesh);
+          if (varzesh >= 10) {
+          document.getElementById("resultVarzesh").value = "قبول 👏";
+        } else if (varzesh < 10) {
+          document.getElementById("resultVarzesh").value = "مردود 😥";
+        }
+        } 
+        var dini = document.getElementById("dini").value;
+        if (dini == "") {
+          document.getElementById("resultDini").value = "نمره وارد نشده";
+        } else {
+          dini=Number(dini);
+          if (dini >= 10) {
+          document.getElementById("resultDini").value = "قبول 👏";
+        } else if (dini < 10) {
+          document.getElementById("resultDini").value = "مردود 😥";
+        }
+        }
+     
+        var moadel =
+          (riyazi + fizic + shimi + english + arabi + farsi + varzesh + dini) /
+          8;
+        document.getElementById("moadel").value = moadel;
+        if (moadel == "") {
+          document.getElementById("resultMoadel").value = "نامعلوم";
+        } else if (moadel >= 10) {
+          document.getElementById("resultMoadel").value = "قبول 👏";
+        } else if (moadel < 10) {
+          document.getElementById("resultMoadel").value = "مشروط 😥";
+        }
+      }
+    </script>
+  </body>
+</html>

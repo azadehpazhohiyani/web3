@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fa-ir">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="assest/Vazirmatn-font-face.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        direction: rtl;
+        font-family: Vazirmatn;
+      }
+      .bmi {
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-bottom: 70px;
+      }
+      .bmi img {
+        width: 100%;
+        display: block;
+      }
+      .body-mass-index {
+        width: 70%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0 auto 80px auto;
+      }
+      .box-vazn {
+        width: 50%;
+        text-align: center;
+      }
+      .box-ghad {
+        width: 50%;
+        text-align: center;
+      }
+      .box-image {
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 40px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .box-image .image {
+        aspect-ratio: 1/2;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      .box-image .vazn {
+        background-image: url(assest/image/Cart1002229www.tiktarh.com_.jpg);
+      }
+      .box-image .ghad {
+        background-image: url(assest/image/ghad1.jpg);
+      }
+      .body-mass-index p {
+        text-align: center;
+        font-size: 2vw;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      .body-mass-index input,
+      .box-bmi input {
+        border: none;
+        outline: none;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        display: inline-block;
+        width: 30%;
+        padding: 20px 30px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        font-size: 25px;
+      }
+      .box-bmi {
+        width: 90%;
+        margin: 0 auto 50px auto;
+        text-align: center;
+      }
+      .box-image-bmi .image {
+        aspect-ratio: 1.7/1.2;
+        background-image: url(assest/image/bmi1.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      .box-image-bmi {
+        width: 100%;
+      }
+      .box-bmi input {
+        width: 35%;
+      }
+      p#result {
+        text-align: center;
+        font-size: 2.5vw;
+        margin-bottom: 40px;
+      }
+      .box-btn {
+        margin: 0 auto 10px auto;
+        width: 20vw;
+      }
+      .btn {
+        display: inline-block;
+        padding: 2vw 4vw;
+        background-color: cornflowerblue;
+        border: none;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        font-size: 2.5vw;
+        color: white;
+        width: 100%;
+        text-align: center;
+      }
+      .btn:hover {
+        background-color: rgba(0, 0, 139, 0.548);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bmi">
+      <img src="assest/image/Article_Banner-1-24.jpg" alt="" />
+    </div>
+    <div class="body-mass-index">
+      <div class="box-vazn">
+        <div class="box-image">
+          <div class="image vazn"></div>
+        </div>
+        <p>وزن خود را وارد کنید ( کیلوگرم ) :</p>
+        <input type="number" name="vazn" id="vazn" />
+      </div>
+      <div class="box-ghad">
+        <div class="box-image">
+          <div class="image ghad"></div>
+        </div>
+        <p>قد خود را وارد کنید (متر) :</p>
+        <input type="number" name="ghad" id="ghad" />
+      </div>
+    </div>
+    <div class="box-bmi">
+      <div class="box-image-bmi">
+        <div class="image bmi" id="image-bmi"></div>
+      </div>
+      <input type="text" name="bmi" id="bmi" />
+    </div>
+    <p id="result"></p>
+    <div class="box-btn">
+      <button onclick="setBMI()" class="btn">BMI</button>
+    </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <script>
+      function setBMI() {
+        var vazn = document.getElementById("vazn").value;
+        var ghad = document.getElementById("ghad").value;
+        var bmi = vazn / ghad ** 2;
+        document.getElementById("bmi").value = bmi;
+        if (bmi < 18.5) {
+          document.getElementById("image-bmi").style.backgroundImage =
+            "url(assest/image/very-thin-woman-with-mental-disorder-anarexia.jpg)";
+          document.getElementById("image-bmi").style.backgroundPosition = "top";
+          document.getElementById("result").innerHTML =
+            "شمادچار کمبود وزن هستید 🥶.";
+          document.getElementById("result").style.color = "cornflowerblue";
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+          document.getElementById("image-bmi").style.backgroundImage =
+            "url(assest/image/normal1.jpg)";
+          document.getElementById("result").innerHTML =
+            "تبریک وزن شما نرمال است ✅.";
+          document.getElementById("result").style.color = "green";
+        } else if (bmi >= 25 && bmi <= 29.9) {
+          document.getElementById("image-bmi").style.backgroundImage =
+            "url(assest/image/ezafehvazn1.jpg)";
+          document.getElementById("image-bmi").style.backgroundPosition = "top";
+          document.getElementById("result").innerHTML =
+            "شما دارای اضافه وزن هستید 😟.";
+          document.getElementById("result").style.color = "yellow";
+        } else if (bmi >= 30 && bmi <= 34.9) {
+          document.getElementById("image-bmi").style.backgroundImage =
+            "url(assest/image/chagh1.jpg)";
+          document.getElementById("result").innerHTML = "شما چاق هستید 🥵.";
+          document.getElementById("result").style.color = "darkorange";
+        } else if (bmi >= 35) {
+          document.getElementById("image-bmi").style.backgroundImage =
+            "url(assest/image/54969_298.jpg)";
+          document.getElementById("result").innerHTML =
+            "شما دچار چاقی مفرط هستید ❌.";
+          document.getElementById("result").style.color = "red";
+        } else {
+          document.getElementById("result").innerHTML =
+            "شما داده ای وارد نکردید .";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fa-ir">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="assest/Vazirmatn-font-face.css" />
+    <link rel="stylesheet" href="assest/css/style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="box-input">
+        <label for="photo">عکس :</label>
+        <br />
+        <input
+          type="text"
+          name="photo"
+          id="photo"
+          style="width: 100%"
+          value="assest/image/avatar.jpg"
+        />
+      </div>
+      <div class="box-input">
+        <label for="fname">نام :</label>
+        <br />
+        <input type="text" name="fname" id="fname" placeholder="نام..." />
+      </div>
+      <div class="box-input">
+        <label for="lname">نام خانوادگی :</label>
+        <br />
+        <input
+          type="text"
+          name="lname"
+          id="lname"
+          placeholder="نام خانوادگی..."
+        />
+      </div>
+      <div class="box-input">
+        <label for="phone">شماره همراه :</label>
+        <br />
+        <input type="tel" name="phone" id="phone" placeholder="09127203650" />
+      </div>
+      <div class="box-input">
+        <label for="email">آدرس ایمیل :</label>
+        <br />
+        <input type="email" name="email" id="email" />
+      </div>
+
+      <div class="box-input">
+        <label for="marital-status">وضعیت تاهل :</label>
+        <br />
+        <select name="marital-status" id="marital-status" style="width: 50%">
+          <option value="مجرد">مجرد</option>
+          <option value="متاهل">متاهل</option>
+        </select>
+      </div>
+      <div class="box-input">
+        <label for="age">سن :</label>
+        <br />
+        <input type="number" name="age" id="age" style="width: 50%" />
+      </div>
+      <div class="box-input" style="width: 100%">
+        <label for="adress">آدرس محل سکونت :</label>
+        <br />
+        <input type="text" name="adress" id="adress" />
+      </div>
+      <div class="btn">
+        <button id="add" onclick="handleSubmit()">ثبت</button>
+        <button id="delete" onclick="deleteUnder18()">حذف زیر 18 سال</button>
+      </div>
+    </div>
+
+    <div id="show-result"></div>
+
+    <script>
+      let personalities = [];
+      const insertPersonalitiesToPage = function () {
+        let page = document.getElementById("show-result");
+        page.innerHTML = "";
+        personalities.forEach(function (value) {
+          page.innerHTML += `
+          <div class="box-result">
+        <div class="box-image">
+          <div class="image" style="background-image: url(${value.photo});"></div>
+        </div>
+        <div class="characteristics">
+          <p>🔹<b>نام :</b>${value.fistname}</p>
+          <p>🔹<b>نام خانوادگی :</b>${value.lastname}</p>
+          <p>🔹<b>شماره همراه :</b>${value.phone}</p>
+          <p>🔹<b>آدرس ایمیل :</b>${value.email}</p>
+          <p>🔹<b>وضعیت تاهل :</b>${value.maritalStatus}</p>
+          <p>🔹<b>سن :</b>${value.age}</p>
+          <p>🔹<b>آدرس محل سکونت :</b>${value.adress}</p>
+        </div>
+      </div>`;
+        });
+      };
+      const handleSubmit = function () {
+        let photo = document.getElementById("photo").value;
+        let fname = document.getElementById("fname").value;
+        let lname = document.getElementById("lname").value;
+        let phone = document.getElementById("phone").value;
+        let email = document.getElementById("email").value;
+        let maritalStatus = document.getElementById("marital-status").value;
+        let age = document.getElementById("age").value;
+        let adress = document.getElementById("adress").value;
+        document.getElementById("fname").value = "";
+        document.getElementById("lname").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("age").value = "";
+        document.getElementById("adress").value = "";
+        personalities.push({
+          photo: photo,
+          fistname: fname,
+          lastname: lname,
+          phone: phone,
+          email: email,
+          maritalStatus: maritalStatus,
+          age: age,
+          adress: adress,
+        });
+        insertPersonalitiesToPage();
+      };
+
+      const deleteUnder18 = function () {
+        for (let i = 0; i < personalities.length; i++) {
+          if (personalities[i].age < 18) {
+            personalities.splice(i, 1);
+          }
+        }
+        insertPersonalitiesToPage();
+      };
+    </script>
+  </body>
+</html>
