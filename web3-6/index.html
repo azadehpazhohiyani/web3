@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: lightblue;
+      }
+      #cornometer {
+        width: 400px;
+        height: 400px;
+        padding: 30px;
+        border-radius: 50%;
+        border: 7px solid palevioletred;
+        margin: 50px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #cornometer .number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      #cornometer .number div {
+        width: 14%;
+        text-align: center;
+      }
+      .number span {
+        display: inline-block;
+        font-size: 50px;
+        font-weight: bold;
+      }
+      .number span.h {
+        color: black;
+      }
+      .number span.m {
+        color: red;
+      }
+      .number span.s {
+        color: green;
+      }
+      .number span.ms {
+        color: blue;
+      }
+      @keyframes border-size {
+        0% {
+          border-color: aqua;
+        }
+        10% {
+          border-color: yellow;
+        }
+        20% {
+          border-color: orange;
+        }
+        30% {
+          border-color: red;
+        }
+        40% {
+          border-color: blueviolet;
+        }
+        50% {
+          border-color: blue;
+        }
+        60% {
+          border-color: aquamarine;
+        }
+        70% {
+          border-color: green;
+        }
+        80% {
+          border-color: deeppink;
+        }
+        90% {
+          border-color: pink;
+        }
+        100% {
+          border-color: greenyellow;
+        }
+      }
+      .btn-group {
+        margin: 20px auto;
+        text-align: center;
+        width: 70%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      .btn-group button,
+      .button-capture button {
+        background: linear-gradient(
+          79deg,
+          rgba(11, 217, 215, 1) 0%,
+          rgba(14, 102, 138, 1) 50%,
+          rgba(24, 231, 215, 1) 100%
+        );
+        border: none;
+        outline: none;
+        display: inline-block;
+        color: white;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+          rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        font-size: 20px;
+      }
+      .btn-group button:hover {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+          rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+      }
+      button.start,
+      button.reset {
+        border-radius: 50%;
+        padding: 40px;
+      }
+      button.stop,
+      button.capture {
+        border-radius: 20px;
+        padding: 20px 40px;
+      }
+      button.stop span {
+        margin-right: 10px;
+      }
+      .button-capture {
+        margin: 30px auto;
+        text-align: center;
+      }
+      button.capture:hover {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+          rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+      }
+      .table-capture table {
+        margin: 40px auto;
+        width: 50%;
+      }
+      .table-capture table,
+      tr,
+      th,
+      td {
+        border: 4px solid palevioletred;
+        border-collapse: collapse;
+        padding: 20px;
+        border-radius: 10px;
+        color: darkblue;
+        text-align: center;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cornometer">
+      <div class="number">
+        <div><span class="h">00</span></div>
+        <div><span>:</span></div>
+        <div><span class="m">00</span></div>
+        <div><span>:</span></div>
+        <div><span class="s">00</span></div>
+        <div><span>:</span></div>
+        <div><span class="ms">00</span></div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="start" onclick="startCornometer()">
+        <span><i class="fa fa-play" aria-hidden="true"></i></span>
+      </button>
+      <button class="stop" onclick="stopCornometer()">
+        <span><i class="fa fa-stop" aria-hidden="true"></i></span>stop
+      </button>
+      <button class="reset" onclick="resetCornometer()">
+        <span><i class="fa fa-undo" aria-hidden="true"></i></span>
+      </button>
+    </div>
+    <div class="button-capture">
+      <button class="capture" onclick="captureCornometer()">capture</button>
+    </div>
+    <div class="table-capture">
+      <table>
+        <thead>
+          <tr>
+            <th>Hour</th>
+            <th>Minutes</th>
+            <th>Second</th>
+            <th>Millisecond</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <script>
+      let cornoInterval = null;
+      let captureArray = [];
+      let h = 0,
+        m = 0,
+        s = 0,
+        ms = 0;
+
+      function startCornometer() {
+        cornoInterval = setInterval(function () {
+          ms += 500;
+          if (ms >= 1000) {
+            s++;
+            ms = 0;
+          }
+          if (s >= 60) {
+            m++;
+            s = 0;
+          }
+          if (m >= 60) {
+            h++;
+            m = 0;
+          }
+          document.getElementById("cornometer").style.animation =
+            "border-size 10s infinite alternate";
+          document.querySelector(".ms").innerHTML = ms;
+          document.querySelector(".s").innerHTML = s;
+          document.querySelector(".m").innerHTML = m < 10 ? `0${m}` : m;
+          document.querySelector(".h").innerHTML = h < 10 ? `0${h}` : h;
+        }, 1);
+      }
+
+      function stopCornometer() {
+        clearInterval(cornoInterval);
+        document.getElementById("cornometer").style.animation = "";
+      }
+
+      function resetCornometer() {
+        clearInterval(cornoInterval);
+        h = 0;
+        m = 0;
+        s = 0;
+        ms = 0;
+        document.querySelector(".ms").innerHTML = "000";
+        document.querySelector(".s").innerHTML = "00";
+        document.querySelector(".m").innerHTML = "00";
+        document.querySelector(".h").innerHTML = "00";
+        captureArray = [];
+        showInTable();
+      }
+
+      function captureCornometer() {
+        let cTime = { ms, s, m, h };
+        captureArray.push(cTime);
+        showInTable();
+      }
+
+      function showInTable() {
+        let tbody = document.getElementById("tbody");
+        tbody.innerHTML = "";
+        captureArray.forEach((item) => {
+          tbody.innerHTML += `
+          <tr>
+            <td>${item.h}</td>
+            <td>${item.m}</td>
+            <td>${item.s}</td>
+            <td>${item.ms}</td>
+          </tr>`;
+        });
+      }
+    </script>
+  </body>
+</html>
