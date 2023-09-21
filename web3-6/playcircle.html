@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        position: relative;
+      }
+      #fixedCircle {
+        width: 170px;
+        height: 170px;
+        position: fixed;
+        border: 4px solid red;
+        top: 220px;
+        left: 850px;
+        border-radius: 50%;
+      }
+      #moveCircle {
+        width: 170px;
+        height: 170px;
+        position: fixed;
+        background-color: red;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+      }
+      .button {
+        position: fixed;
+        top: 700px;
+        left: 880px;
+        padding: 20px 40px;
+        margin-top: 50px;
+        border-radius: 10px;
+        font-size: 25px;
+        background-color: aqua;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+          rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      }
+      .button:hover {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+          rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+      }
+      .box-message {
+        position: fixed;
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+        position: fixed;
+        top: 450px;
+        left: 650px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body onkeydown="playCircle(event)">
+    <div id="fixedCircle"></div>
+    <div id="moveCircle"></div>
+    <div class="box-message">
+      <img src="assest/image/fireworks.gif" alt="" />
+    </div>
+    <div class="button" onclick="reset()">reset</div>
+
+    <script>
+      let leftCircle = 0,
+        topCircle = 0;
+      let topStyleF = "220px",
+        leftStyleF = "850px";
+      let moveCircle = document.getElementById("moveCircle");
+      let fixedCircle = document.getElementById("fixedCircle");
+      const playCircle = (e) => {
+        let topStyleM = moveCircle.style.top;
+        let leftStyleM = moveCircle.style.left;
+        if (e.code == "ArrowRight") {
+          leftCircle += 5;
+          moveCircle.style.left = `${leftCircle}px`;
+        } else if (e.code == "ArrowLeft") {
+          leftCircle -= 5;
+          moveCircle.style.left = `${leftCircle}px`;
+        } else if (e.code == "ArrowDown") {
+          topCircle += 5;
+          moveCircle.style.top = `${topCircle}px`;
+        } else if (e.code == "ArrowUp") {
+          topCircle -= 5;
+          moveCircle.style.top = `${topCircle}px`;
+        }
+        if (topStyleM == topStyleF && leftStyleM == leftStyleF) {
+          document.getElementsByClassName("box-message")[0].style.display =
+            "block";
+        }
+      };
+
+      const reset = () => {
+        moveCircle.style.top = "0px";
+        moveCircle.style.left = "0px";
+        document.getElementsByClassName("box-message")[0].style.display =
+          "none";
+        leftCircle = 0;
+        topCircle = 0;
+      };
+    </script>
+  </body>
+</html>
