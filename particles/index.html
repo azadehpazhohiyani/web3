@@ -36,31 +36,80 @@
           style="background-color: rgba(255, 255, 255, 0.658)"
         >
           <div class="mb-3">
-            <label for="exampleInputUserName" class="form-label fs-5"
-              >Username :</label
-            >
+            <label for="userName" class="form-label fs-5">Username :</label>
             <input
               type="text"
               class="form-control p-2"
-              id="exampleInputUserName"
-              aria-describedby="emailHelp"
+              id="userName"
+              aria-describedby="userNameHelp"
             />
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword" class="form-label fs-5"
-              >password :</label
-            >
+            <label for="password" class="form-label fs-5">password :</label>
             <input
               type="password"
               class="form-control p-2"
-              id="exampleInputPassword"
-              aria-describedby="emailHelp"
+              id="password"
+              aria-describedby="passwordHelp"
             />
           </div>
 
-          <button type="button" class="btn btn-primary py-2 px-4">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg"
+            onclick="loginUser()"
+            data-bs-toggle="modal"
+            data-bs-target="#modalId"
+          >
             Submit
           </button>
+          <!--  Modal trigger button  -->
+
+          <!-- Modal Body-->
+          <div
+            class="modal fade"
+            id="modalId"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid fs-4">
+                    your wellcome <span id="showUsername"></span>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                    onclick="deletInput()"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="logOut()"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -98,5 +147,52 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+      function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == " ") {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+      function deletCookie(cname) {
+        document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      }
+      function showLogin() {
+        document.getElementById("showUsername").innerHTML =
+          getCookie("username");
+      }
+
+      function loginUser() {
+        let u = document.getElementById("userName").value;
+        let p = document.getElementById("password").value;
+
+        setCookie("username", u, 10);
+        setCookie("password", p, 10);
+        showLogin();
+      }
+      function deletInput() {
+        document.getElementById("userName").value = "";
+        document.getElementById("password").value = "";
+      }
+      function logOut() {
+        deletCookie("username");
+        deletCookie("password");
+      }
+    </script>
   </body>
 </html>
