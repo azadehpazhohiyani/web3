@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App - Easy Tutorials</title>
+    <link
+      rel="shortcut icon"
+      href="assest/image/file/weather-1.png"
+      type="image/x-png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Puddles&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assest/css/style.css" />
+  </head>
+  <body>
+    <div class="card">
+      <div class="search">
+        <input type="text" placeholder="enter city name" spellcheck="false" />
+        <button><img src="assest/image/search.svg" alt="" /></button>
+      </div>
+      <div class="error">
+        <p>Invalid city name</p>
+      </div>
+      <div class="Weather">
+        <img
+          src="assest/image/file/morning-rain.png"
+          alt=""
+          class="Weather-icon"
+        />
+        <h1 class="temp">22°c</h1>
+        <h2 class="city">New Yourk</h2>
+        <div class="details">
+          <div class="col">
+            <img src="assest/image/file/calm.png" alt="" />
+            <div>
+              <p class="humidity">50%</p>
+              <p>Humidity</p>
+            </div>
+          </div>
+          <div class="col">
+            <img src="assest/image/file/wind-2.png" alt="" />
+            <div>
+              <p class="wind">15 km/h</p>
+              <p>Wind Speed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const apiKey = "75ff9e0b067905b580102c72e89d643f";
+      const apiUrl =
+        "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+
+      const searchBox = document.querySelector(".search input");
+      const searchBtn = document.querySelector(".search button");
+      const weatherIcon = document.querySelector(".Weather-icon");
+
+      async function checkWeather(city) {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+        if (response.status == 404) {
+          document.querySelector(".error").style.display = "block";
+          document.querySelector(".Weather").style.display = "none";
+        } else {
+          var data = await response.json();
+
+          console.log(data);
+
+          document.querySelector(".city").innerHTML = data.name;
+          document.querySelector(".temp").innerHTML =
+            Math.round(data.main.temp) + "°c";
+          document.querySelector(".humidity").innerHTML =
+            data.main.humidity + "%";
+          document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+          if (data.weather[0].main == "Clouds") {
+            weatherIcon.src = "assest/image/file/clouds.png";
+          } else if (data.weather[0].main == "Clear") {
+            weatherIcon.src = "assest/image/file/sunny.png";
+          } else if (data.weather[0].main == "Rain") {
+            weatherIcon.src = "assest/image/file/raining.png";
+          } else if (data.weather[0].main == "Drizzle") {
+            weatherIcon.src = "assest/image/file/summer-rain.png";
+          } else if (data.weather[0].main == "Mist") {
+            weatherIcon.src = "assest/image/file/clouds-1.png";
+          } else if (data.weather[0].main == "Snow") {
+            weatherIcon.src = "assest/image/file/snowing.png";
+          }
+
+          document.querySelector(".Weather").style.display = "block";
+          document.querySelector(".error").style.display = "none";
+        }
+      }
+
+      searchBtn.addEventListener("click", () => {
+        checkWeather(searchBox.value);
+      });
+    </script>
+  </body>
+</html>
