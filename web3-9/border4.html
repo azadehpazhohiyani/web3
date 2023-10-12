@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doughnut Charts</title>
+  </head>
+  <body>
+    <canvas id="myChart" style="width: 100%"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <script>
+      const xValues = [
+        "Italy",
+        "France",
+        "Spain",
+        "USA",
+        "Argentina",
+        "Germany",
+        "Portugal",
+      ];
+      const yValues = [55, 35, 40, 20, 25, 10, 15];
+      const barColors = [
+        "#EA2027",
+        "#12CBC4",
+        "#0652DD",
+        "#ED4C67",
+        "#FFC312",
+        "#D980FA",
+        "#C4E538",
+      ];
+
+      new Chart("myChart", {
+        type: "doughnut",
+        data: {
+          labels: xValues,
+          datasets: [
+            {
+              backgroundColor: barColors,
+              data: yValues,
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "World Wide Wine Production 2018",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pie Charts</title>
+  </head>
+  <body>
+    <canvas id="myChart" style="width: 100%"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+      const xValues = [
+        "Italy",
+        "France",
+        "Spain",
+        "USA",
+        "Argentina",
+        "Germany",
+        "Portugal",
+      ];
+      const yValues = [40, 35, 25, 18, 10, 15, 20];
+      const barColors = [
+        "#EA2027",
+        "#12CBC4",
+        "#0652DD",
+        "#FDA7DF",
+        "#FFC312",
+        "#ED4C67",
+        "#009432",
+      ];
+
+      new Chart("myChart", {
+        type: "pie",
+        data: {
+          labels: xValues,
+          datasets: [
+            {
+              backgroundColor: barColors,
+              data: yValues,
+            },
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: "World Wide Wine Production 2018",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
