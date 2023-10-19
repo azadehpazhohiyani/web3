@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="http://localhost:3000/posts " method="post">
+      <input type="text" name="title" />
+      <input type="text" name="author" />
+      <button type="submit">rigister</button>
+      <link
+        rel="stylesheet"
+        href="node_modules/jquery-toast-plugin/dist/jquery.toast.min.css"
+      />
+    </form>
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+    <script>
+      $("form").submit(function () {
+        event.preventDefault();
+        var settings = {
+          url: "http://localhost:3000/posts",
+          method: "POST",
+          timeout: 0,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: JSON.stringify({
+            title: $("[name=title]").val(),
+            author: $("[name=author]").val(),
+          }),
+        };
+
+        $.ajax(settings).done(function (response) {
+          $("[name=title]").val("");
+          $("[name=author]").val("");
+          $.toast("save is ok!");
+        });
+      });
+    </script>
+  </body>
+</html>
