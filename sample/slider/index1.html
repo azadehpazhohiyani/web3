@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.min.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+      .main {
+        margin: 100px 0;
+        height: 850px;
+      }
+      .swiper {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+      }
+
+      .swiper-slide {
+        width: 2500 !important;
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 90%;
+      }
+
+      .swiper {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .swiper-slide-prev,
+      .swiper-slide-next {
+        opacity: 0.5;
+      }
+      .swiper-slide-active {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="assest/image/1960x11021.jpg" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="assest/image/1960x11022.jpg" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="assest/image/1960x11023.jpg" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="assest/image/1960x11024.jpg" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="assest/image/1960x11025.jpg" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="assest/image/1960x11026.jpg" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="assest/image/1960x11027.jpg" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="assest/image/1960x11028.jpg" alt="" />
+          </div>
+          <div class="swiper-slide">
+            <img src="assest/image/1960x11029.jpg" alt="" />
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <script src="node_modules/swiper/swiper-bundle.min.js"></script>
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 20,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        breakpoints: {
+          1000: {
+            slidesPerView: 2,
+          },
+        },
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -31,6 +31,19 @@
       "id": 7
     }
   ],
+  "users": [
+    {
+      "name": "azadeh",
+      "lastName": "pazho",
+      "id": 1
+    },
+    {
+      "name": "ali",
+      "lastname": "sadeghi",
+      "email": "ali@yahoo.com",
+      "id": 2
+    }
+  ],
   "comments": [
     {
       "id": 1,

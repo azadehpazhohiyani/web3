@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toast Notification</title>
+    <link
+      rel="shortcut icon"
+      href="assest/image/toast-notification/Gartoon-Team-Gartoon-Action-Dialog-apply.svg"
+      type="image/svg+xml"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Puddles&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="assest/css/toast-notification.css" />
+  </head>
+  <body>
+    <div class="buttons">
+      <button onclick="showToast(successMsg)">Success</button>
+      <button onclick="showToast(errorMsg)">Error</button>
+      <button onclick="showToast(invalidMsg)">Invalid</button>
+    </div>
+
+    <div id="toastBox"></div>
+
+    <script>
+      let toastBox = document.getElementById("toastBox");
+      let successMsg =
+        '<i class="fa fa-check-circle" aria-hidden="true"></i> Successfully submitted';
+      let errorMsg =
+        '<i class="fa fa-times-circle" aria-hidden="true"></i> Please fix the error!';
+      let invalidMsg =
+        '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> Invalid input, check again';
+
+      function showToast(msg) {
+        let toast = document.createElement("div");
+        toast.classList.add("toast");
+        toast.innerHTML = msg;
+        toastBox.appendChild(toast);
+
+        if (msg.includes("error")) {
+          toast.classList.add("error");
+        }
+        if (msg.includes("Invalid")) {
+          toast.classList.add("Invalid");
+        }
+
+        setTimeout(() => {
+          toast.remove();
+        }, 6000);
+      }
+    </script>
+  </body>
+</html>
